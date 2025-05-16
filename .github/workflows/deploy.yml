@@ -1,0 +1,31 @@
+name: Build & Deploy MkDocs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 取出原始碼
+        uses: actions/checkout@v3
+
+      - name: 安裝 Python 與 MkDocs Material
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - run: pip install mkdocs-material
+
+      - name: Build MkDocs 站點
+        run: mkdocs build  # 會依 mkdocs.yml 將輸出放到 site_dir，如 docs/
+
+      - name: Commit & Push 靜態檔
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git commit -m "自動 Build MkDocs 站點" || echo "No changes to commit"
+          git push
