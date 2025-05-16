@@ -1,0 +1,30 @@
+# mkdocs.yml
+
+site_name: "Vincent’s Digital Garden"
+site_url: https://DigitalGarden.github.io/
+docs_dir: docs           # 你的 Markdown 檔案資料夾
+site_dir: site           # MkDocs build 輸出目錄
+
+theme:
+  name: material        # 使用 Material for MkDocs 主題
+  palette:
+    primary: indigo
+    accent: light-indigo
+
+nav:
+  - Home: index.md
+  - Resume: resume.md
+  - 嵌入式:
+      - 對齊原理: embedded/alignment.md
+      - 記憶體區段: embedded/memory-sections.md
+  - AI/ML: ai/index.md
+  - 工具與流程: tools/index.md
+
+plugins:
+  - search
+  - git-revision-date
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/your-github-username
