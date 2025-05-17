@@ -1,6 +1,9 @@
 # .github/workflows/deploy.yml
 name: Deploy MkDocs to GitHub Pages
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ main ]
@@ -8,24 +11,33 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
 
+    steps:
+      # 1. Checkout
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+
+      # 2. Setup Python
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
+      # 3. Install dependencies
       - name: Install dependencies
-          pip install mkdocs-material
-          pip install mkdocs-git-revision-date-plugin
+        run: |
+          pip install --upgrade pip
+          pip install mkdocs-material mkdocs-git-revision-date-plugin
 
+      # 4. Build the site
       - name: Build site
         run: mkdocs build --site-dir site
 
+      # 5. Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: main        # 或改 gh-pages
-          publish_dir: ./site         # MkDocs build 目標資料夾
+          publish_branch: main
+          publish_dir: ./site
