@@ -1,33 +1,31 @@
-name: Build & Deploy MkDocs
+# .github/workflows/deploy.yml
+name: Deploy MkDocs to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
-  build_and_deploy:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: 取出原始碼
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: 安裝 Python 與 MkDocs Material
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-      - run: |
+
+      - name: Install dependencies
           pip install mkdocs-material
           pip install mkdocs-git-revision-date-plugin
 
-      - name: Build MkDocs 站點
-        run: mkdocs build  # 會依 mkdocs.yml 將輸出放到 site_dir，如 docs/
+      - name: Build site
+        run: mkdocs build --site-dir site
 
-      - name: Commit & Push 靜態檔
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/
-          git commit -m "自動 Build MkDocs 站點" || echo "No changes to commit"
-          git push
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: main        # 或改 gh-pages
+          publish_dir: ./site         # MkDocs build 目標資料夾
