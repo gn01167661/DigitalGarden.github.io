@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://DigitalGarden.github.io/</loc>
-         <lastmod>2025-05-17</lastmod>
+         <lastmod>2025-05-19</lastmod>
+    </url>
+    <url>
+         <loc>https://DigitalGarden.github.io/graph/</loc>
+         <lastmod>2025-05-19</lastmod>
     </url>
     <url>
          <loc>https://DigitalGarden.github.io/resume/</loc>
-         <lastmod>2025-05-17</lastmod>
+         <lastmod>2025-05-19</lastmod>
     </url>
     <url>
          <loc>https://DigitalGarden.github.io/ai/</loc>
-         <lastmod>2025-05-17</lastmod>
+         <lastmod>2025-05-19</lastmod>
     </url>
     <url>
          <loc>https://DigitalGarden.github.io/embedded/alignment/</loc>
-         <lastmod>2025-05-17</lastmod>
+         <lastmod>2025-05-19</lastmod>
     </url>
     <url>
          <loc>https://DigitalGarden.github.io/embedded/memory-sections/</loc>
-         <lastmod>2025-05-17</lastmod>
+         <lastmod>2025-05-19</lastmod>
     </url>
     <url>
          <loc>https://DigitalGarden.github.io/tools/</loc>
-         <lastmod>2025-05-17</lastmod>
+         <lastmod>2025-05-19</lastmod>
     </url>
 </urlset>
