@@ -14,6 +14,7 @@ theme:
 nav:
   - Home: index.md
   - Resume: resume.md
+  - Knowledge Graph: graph.md 
   - 嵌入式:
       - 對齊原理: embedded/alignment.md
       - 記憶體區段: embedded/memory-sections.md
@@ -23,6 +24,14 @@ nav:
 plugins:
   - search
   - git-revision-date
+  - mermaid2
+
+extra_javascript:
+  - https://d3js.org/d3.v7.min.js
+  - assets/js/graph.js
+
+extra_css:
+  - assets/css/graph.css    # 如需自訂大小、背景等
 
 extra:
   social:
