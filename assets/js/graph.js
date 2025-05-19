@@ -1,12 +1,13 @@
 // docs/assets/js/graph.js
-(async function(){
-  const width = 800, height = 600;
+(async function() {
+  const width = 800,
+        height = 600;
   const data = await d3.json('../assets/data/graph-data.json');
 
   const svg = d3.select('#graph-container')
     .append('svg')
-    .attr('width', width)
-    .attr('height', height);
+      .attr('width', width)
+      .attr('height', height);
 
   // 初始化力導向模擬
   const simulation = d3.forceSimulation(data.nodes)
@@ -30,6 +31,7 @@
     .data(data.nodes)
     .enter().append('circle')
       .attr('r', 10)
+      .attr('fill', d => d.color || '#555')
       .call(d3.drag()
         .on('start', dragstarted)
         .on('drag', dragged)
@@ -46,9 +48,9 @@
     const group = d3.select(this);
     if (d.url) {
       group.append('a')
-        .attr('href', d.url)
-        .attr('target', '_blank')
-        .style('cursor', 'pointer')
+          .attr('href', d.url)
+          .attr('target', '_blank')
+          .style('cursor', 'pointer')
         .append('text')
           .text(d.id)
           .attr('x', d.x + 15)
@@ -56,10 +58,10 @@
           .attr('dy', '.35em');
     } else {
       group.append('text')
-        .text(d.id)
-        .attr('x', d.x + 15)
-        .attr('y', d.y - 10)
-        .attr('dy', '.35em');
+          .text(d.id)
+          .attr('x', d.x + 15)
+          .attr('y', d.y - 10)
+          .attr('dy', '.35em');
     }
   });
 
@@ -83,13 +85,18 @@
   // 拖拽事件處理
   function dragstarted(event, d) {
     if (!event.active) simulation.alphaTarget(0.3).restart();
-    d.fx = d.x; d.fy = d.y;
+    d.fx = d.x;
+    d.fy = d.y;
   }
+
   function dragged(event, d) {
-    d.fx = event.x; d.fy = event.y;
+    d.fx = event.x;
+    d.fy = event.y;
   }
+
   function dragended(event, d) {
     if (!event.active) simulation.alphaTarget(0);
-    d.fx = null; d.fy = null;
+    d.fx = null;
+    d.fy = null;
   }
 })();
