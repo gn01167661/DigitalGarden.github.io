@@ -29,5 +29,3 @@
 > 若有建議或 發現任何錯誤，請回報至 [GitHub Issues](https://github.com/your-username/DigitalGarden/issues)。
 
 ---
-
-*最後更新：`{{ git_revision_date }}`*
