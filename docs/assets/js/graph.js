@@ -30,6 +30,7 @@
     .data(data.nodes)
     .enter().append('circle')
       .attr('r', 10)
+      .attr('fill', d => d.color || '#555')
       .call(d3.drag()
         .on('start', dragstarted)
         .on('drag', dragged)
