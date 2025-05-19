@@ -7,7 +7,7 @@ site_dir: site           # MkDocs build 輸出目錄
 
 theme:
   name: material        # 使用 Material for MkDocs 主題
-  custom_dir: overrides        # ← 加上這行，指向你放 base.html 的 overrides/
+  custom_dir: docs/overrides        # ← 加上這行，指向你放 base.html 的 overrides/
   palette:
     primary: indigo
     accent: light-indigo
