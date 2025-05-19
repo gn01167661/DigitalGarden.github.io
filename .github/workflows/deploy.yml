@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install mkdocs-material mkdocs-git-revision-date-plugin
+          pip install mkdocs-material mkdocs-git-revision-date-plugin mkdocs-mermaid2
 
       # 4. Build the site
       - name: Build site
