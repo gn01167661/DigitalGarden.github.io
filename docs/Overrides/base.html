@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{# 1. 在 <head> 注入 Facebook SDK #}
+{% block extrahead %}
+  {{ super() }}
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v15.0&appId=3136073306559284&autoLogAppEvents=1">
+  </script>
+{% endblock %}
+
+{# 2. 在主体内容后插入「最后更新」与评论区 #}
+{% block content %}
+  {{ super() }}
+
+  <footer>
+    <small>最後更新：{{ git_revision_date }}</small>
+  </footer>
+
+  <div class="fb-comments"
+       data-href="{{ page.abs_url }}"
+       data-width="100%"
+       data-numposts="5">
+  </div>
+{% endblock %}
