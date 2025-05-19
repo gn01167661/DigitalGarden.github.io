@@ -1,19 +1,20 @@
-{% extends "@material/base.html" %}
+{% extends "base.html" %}
 
-{# 注入内容：在每个页面主体开始添加 fb-root、FB SDK 脚本、最后更新 & 评论区 #}
-{% block content %}
-  <div id="fb-root"></div>
-
+{# 注入 Facebook SDK 到 <head> #}
+{% block extrahead %}
   {{ super() }}
-
+  <div id="fb-root"></div>
   <script async defer crossorigin="anonymous"
     src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v15.0&appId=3136073306559284&autoLogAppEvents=1">
   </script>
+{% endblock %}
 
+{# 在页面内容后追加「最后更新」和评论区 #}
+{% block content %}
+  {{ super() }}
   <footer>
     <small>最後更新：{{ git_revision_date }}</small>
   </footer>
-
   <div class="fb-comments"
        data-href="{{ page.abs_url }}"
        data-width="100%"
