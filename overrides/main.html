@@ -14,7 +14,7 @@
   {{ super() }}
   <!-- Facebook Comments 插件开始 -->
   <div class="fb-comments"
-    data-href="{{ page.abs_url }}"
+    data-href="{{ config.site_url }}{{ page.url }}"
     data-width=""
     data-numposts="5">
   </div>
