@@ -57,6 +57,12 @@
     
     
     
+  
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v22.0&appId=3136073306559284">
+  </script>
+
   </head>
   
   
@@ -483,30 +489,18 @@
 
 
                 
+
   <footer>
     <small>最後更新：</small>
   </footer>
-  
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '3136073306559284',
-      xfbml      : true,
-      version    : 'v22.0'
-    });
-    FB.AppEvents.logPageView();
-  };
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-  
-  
+  <!-- Facebook Comments 插件开始 -->
+  <div class="fb-comments"
+       data-href="https://gn01167661.github.io/DigitalGarden/"
+       data-width=""
+       data-numposts="5">
+  </div>
+  <!-- Facebook Comments 插件结束 -->
 
               </article>
             </div>
