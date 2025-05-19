@@ -1,4 +1,4 @@
-# 互動式知識圖譜
+# Knowledge Graph
 
 <div id="graph-container"></div>
 
