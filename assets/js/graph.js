@@ -1,7 +1,7 @@
 // docs/assets/js/graph.js
 (async function(){
   const width = 800, height = 600;
-  const data = await d3.json('/assets/data/graph-data.json');
+  const data = await d3.json('../assets/data/graph-data.json');
 
   const svg = d3.select('#graph-container')
     .append('svg')
@@ -23,19 +23,18 @@
       .attr('stroke-width', 2);
 
   // 繪製節點
-	const node = svg.append('g')
-			.attr('stroke', '#fff')
-			.attr('stroke-width', 1.5)
-		.selectAll('circle')
-		.data(data.nodes)
-		.enter().append('circle')
-			.attr('r', 10)
-			.attr('fill', d => d.color || '#555')     // ← 這行：使用 JSON 裡的 color
-			.call(d3.drag()
-				.on('start', dragstarted)
-				.on('drag', dragged)
-				.on('end', dragended)
-			);
+  const node = svg.append('g')
+      .attr('stroke', '#fff')
+      .attr('stroke-width', 1.5)
+    .selectAll('circle')
+    .data(data.nodes)
+    .enter().append('circle')
+      .attr('r', 10)
+      .call(d3.drag()
+        .on('start', dragstarted)
+        .on('drag', dragged)
+        .on('end', dragended)
+      );
 
   // 繪製標籤，若無 URL 則不包 <a>
   const labels = svg.append('g')
