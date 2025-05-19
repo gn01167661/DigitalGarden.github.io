@@ -1,7 +1,7 @@
 # mkdocs.yml
 
 site_name: "Vincent’s Digital Garden"
-site_url: https://DigitalGarden.github.io/
+site_url: https://gn01167661.github.io/DigitalGarden/
 docs_dir: docs           # 你的 Markdown 檔案資料夾
 site_dir: site           # MkDocs build 輸出目錄
 

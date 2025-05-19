@@ -12,16 +12,11 @@
 {# 2. 在页面内容之后插入评论区容器 #}
 {% block content %}
   {{ super() }}
-
-  <footer>
-    <small>最後更新：{{ git_revision_date }}</small>
-  </footer>
-
   <!-- Facebook Comments 插件开始 -->
   <div class="fb-comments"
-       data-href="https://gn01167661.github.io/DigitalGarden/"
-       data-width=""
-       data-numposts="5">
+    data-href="{{ config.site_url }}{{ page.url }}"
+    data-width=""
+    data-numposts="5">
   </div>
   <!-- Facebook Comments 插件结束 -->
 {% endblock %}
