@@ -1,13 +1,20 @@
 // docs/assets/js/graph.js
 (async function() {
-  const width = 800,
-        height = 600;
+	
+  // 取容器实际宽度
+  const container = document.getElementById('graph-container');
+  const width = container.clientWidth;
+  const height = width * 0.75;  // 4:3 比例，可调整
+
   const data = await d3.json('../assets/data/graph-data.json');
 
-  const svg = d3.select('#graph-container')
+  const svg = d3.select(container)
     .append('svg')
-      .attr('width', width)
-      .attr('height', height);
+    .attr('width', width)
+    .attr('height', height)
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet')
+    .classed('responsive-svg', true);
 
   // 初始化力導向模擬
   const simulation = d3.forceSimulation(data.nodes)
