@@ -8,7 +8,7 @@
 /* graph-container 也要可横向伸缩 */
 #graph-container {
   width: 100%;
-  /* 你可以根据需要设置最小高度，或者让它随内容撑开 */
   min-height: 300px;
-  margin: auto;
+  overflow: auto;          /* 允许滚动 */
+  -webkit-overflow-scrolling: touch; /* iOS 平滑滚动 */
 }

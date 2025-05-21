@@ -1,43 +1,46 @@
 // docs/assets/js/graph.js
 (async function() {
-	
-  // 取容器实际宽度
   const container = document.getElementById('graph-container');
   const width = container.clientWidth;
-  const height = width * 0.75;  // 4:3 比例，可调整
+  const height = width * 0.75;
+  const radius = 10; // node radius
 
   const data = await d3.json('../assets/data/graph-data.json');
-
+  
   const svg = d3.select(container)
     .append('svg')
-    .attr('width', width)
-    .attr('height', height)
-    .attr('viewBox', `0 0 ${width} ${height}`)
-    .attr('preserveAspectRatio', 'xMidYMid meet')
-    .classed('responsive-svg', true);
+      .attr('viewBox', `0 0 ${width} ${height}`)
+      .attr('preserveAspectRatio', 'xMidYMid meet')
+      .classed('responsive-svg', true);
 
-  // 初始化力導向模擬
+  // group for zoom
+  const zoomGroup = svg.append('g').attr('class', 'zoom-group');
+
+  // forces
   const simulation = d3.forceSimulation(data.nodes)
     .force('link', d3.forceLink(data.links).id(d => d.id).distance(120))
     .force('charge', d3.forceManyBody().strength(-300))
-    .force('center', d3.forceCenter(width / 2, height / 2));
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    // gently pull nodes back to center
+    .force('x', d3.forceX(width / 2).strength(0.05))
+    .force('y', d3.forceY(height / 2).strength(0.05));
 
-  // 繪製連線
-  const link = svg.append('g')
+  // draw links
+  const link = zoomGroup.append('g')
       .attr('stroke', '#999')
     .selectAll('line')
     .data(data.links)
     .enter().append('line')
       .attr('stroke-width', 2);
 
-  // 繪製節點
-  const node = svg.append('g')
+  // draw nodes
+  const node = zoomGroup.append('g')
       .attr('stroke', '#fff')
       .attr('stroke-width', 1.5)
     .selectAll('circle')
     .data(data.nodes)
     .enter().append('circle')
-      .attr('r', 10)
+      .attr('r', radius)
       .attr('fill', d => d.color || '#555')
       .call(d3.drag()
         .on('start', dragstarted)
@@ -45,8 +48,8 @@
         .on('end', dragended)
       );
 
-  // 繪製標籤，若無 URL 則不包 <a>
-  const labels = svg.append('g')
+  // draw labels
+  const labels = zoomGroup.append('g')
     .selectAll('g')
     .data(data.nodes)
     .enter().append('g');
@@ -60,20 +63,25 @@
           .style('cursor', 'pointer')
         .append('text')
           .text(d.id)
-          .attr('x', d.x + 15)
-          .attr('y', d.y - 10)
+          .attr('x', d.x + radius + 5)
+          .attr('y', d.y - radius - 5)
           .attr('dy', '.35em');
     } else {
       group.append('text')
           .text(d.id)
-          .attr('x', d.x + 15)
-          .attr('y', d.y - 10)
+          .attr('x', d.x + radius + 5)
+          .attr('y', d.y - radius - 5)
           .attr('dy', '.35em');
     }
   });
 
-  // 更新位置
+  // tick: update positions and clamp within bounds
   simulation.on('tick', () => {
+    data.nodes.forEach(d => {
+      d.x = Math.max(radius, Math.min(width - radius, d.x));
+      d.y = Math.max(radius, Math.min(height - radius, d.y));
+    });
+
     link
       .attr('x1', d => d.source.x)
       .attr('y1', d => d.source.y)
@@ -85,11 +93,21 @@
       .attr('cy', d => d.y);
 
     labels.selectAll('text')
-      .attr('x', d => d.x + 15)
-      .attr('y', d => d.y - 10);
+      .attr('x', d => d.x + radius + 5)
+      .attr('y', d => d.y - radius - 5);
   });
 
-  // 拖拽事件處理
+  // zoom behavior
+  const zoomBehavior = d3.zoom()
+    .scaleExtent([0.5, 3])
+    .translateExtent([[0, 0], [width, height]])
+    .on('zoom', ({transform}) => {
+      zoomGroup.attr('transform', transform);
+    });
+
+  svg.call(zoomBehavior);
+
+  // drag handlers
   function dragstarted(event, d) {
     if (!event.active) simulation.alphaTarget(0.3).restart();
     d.fx = d.x;
