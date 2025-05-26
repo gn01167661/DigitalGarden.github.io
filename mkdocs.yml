@@ -16,7 +16,7 @@ nav:
   - Home: index.md
   - Resume: resume.md
   - Knowledge Graph: graph.md 
-  - 嵌入式:
+  - embedded system:
       - 對齊原理: embedded/alignment.md
       - 記憶體區段: embedded/memory-sections.md
   - AI/ML: ai/index.md

@@ -1,14 +1,20 @@
 {
   "nodes": [
-    { "id": "Embedded Systems", "url": "/embedded/index.html", "color": "#1f77b4" },
-    { "id": "RTOS",              "url": "/embedded/rtos.html",    "color": "#ff7f0e" },
-    { "id": "DMA",               "url": "/embedded/dma.html",     "color": "#2ca02c" },
-    { "id": "Language",          "url": "",                       "color": "#d62728" },
-    { "id": "MISRA C",           "url": "/embedded/misra-c.html", "color": "#9467bd" }
+    { "id": "Embedded Systems", "url": "/embedded/", "color": "#1f77b4" },
+    { "id": "OS", 							"url": "/embedded/", "color": "#1f77b4" },
+    { "id": "RTOS"							"url": "/embedded/rtos.html",    "color": "#ff7f0e" },
+    { "id": "Linux",						"url": "/embedded/rtos.html",    "color": "#ff7f0e" },
+    { "id": "Memory",						"url": "/embedded/", "color": "#1f77b4" },
+    { "id": "Language",					"url": "",                       "color": "#d62728" },
+    { "id": "MISRA C",					"url": "/embedded/misra-c.html", "color": "#9467bd" }
   ],
   "links": [
+    { "source": "Embedded Systems","target": "OS" },
+    { "source": "OS","target": "RTOS" },
+    { "source": "OS","target": "Linux" },
+    { "source": "Embedded Systems","target": "Memory" },
+
+		
     { "source": "Language",        "target": "MISRA C" },
-    { "source": "Embedded Systems","target": "RTOS" },
-    { "source": "Embedded Systems","target": "DMA" }
   ]
 }

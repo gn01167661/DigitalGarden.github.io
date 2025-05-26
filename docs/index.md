@@ -26,6 +26,6 @@
 
 ---
 
-> 若有建議或 發現任何錯誤，請回報至 [GitHub Issues](https://github.com/your-username/DigitalGarden/issues)。
+> 若有建議或 發現任何錯誤，請回報至 [GitHub Issues](https://github.com/gn01167661/DigitalGarden/issues)。
 
 ---
