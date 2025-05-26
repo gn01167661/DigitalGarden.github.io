@@ -1,0 +1,399 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="https://gn01167661.github.io/DigitalGarden/embedded/compile_explaination/" rel="canonical"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.6.14" name="generator"/>
+<title>編譯流程 - Vincent’s Digital Garden</title>
+<link href="../../assets/stylesheets/main.342714a4.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../assets/css/graph.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<div id="fb-root"></div>
+<script async="" crossorigin="anonymous" defer="" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v22.0&amp;appId=3136073306559284">
+</script>
+</head>
+<body data-md-color-accent="light-indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#_1">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Vincent’s Digital Garden" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Vincent’s Digital Garden">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Vincent’s Digital Garden
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              編譯流程
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Vincent’s Digital Garden" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Vincent’s Digital Garden">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    Vincent’s Digital Garden
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+<span class="md-ellipsis">
+    Home
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resume/">
+<span class="md-ellipsis">
+    Resume
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../graph/">
+<span class="md-ellipsis">
+    Knowledge Graph
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-ellipsis">
+    embedded system
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            embedded system
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../alignment/">
+<span class="md-ellipsis">
+    對齊原理
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../memory-sections/">
+<span class="md-ellipsis">
+    記憶體區段
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../ai/">
+<span class="md-ellipsis">
+    AI/ML
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tools/">
+<span class="md-ellipsis">
+    工具與流程
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-preprocessing">
+<span class="md-ellipsis">
+      1. 預處理（Preprocessing）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-compilation">
+<span class="md-ellipsis">
+      2. 編譯（Compilation）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-assembly">
+<span class="md-ellipsis">
+      3. 匯編（Assembly）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-linking">
+<span class="md-ellipsis">
+      4. 鏈接（Linking）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+<span class="md-ellipsis">
+      靜態鏈接與動態鏈接的區別
+    </span>
+</a>
+<nav aria-label="靜態鏈接與動態鏈接的區別" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#static-linking">
+<span class="md-ellipsis">
+      靜態鏈接（Static Linking）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dynamic-linking">
+<span class="md-ellipsis">
+      動態鏈接（Dynamic Linking）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+<span class="md-ellipsis">
+      靜態鏈接 和 動態鏈接 同時存在
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="_1">編譯流程</h1>
+<p>編譯過程圖
+下面是 C/C++ 編譯過程的簡化流程圖：</p>
+<div class="mermaid">graph TD
+    A[1.Preprocessing] --&gt; B[2.Compilation]
+    B --&gt; C[3.Assembly]
+    C --&gt; D[4.Linking]
+    D --&gt; E[5.Executable File Generation]
+</div>
+<p>編譯過程通常由以下幾個步驟組成：</p>
+<h3 id="1-preprocessing">1. <strong>預處理（Preprocessing）</strong></h3>
+<p>在編譯過程開始之前，編譯器會執行預處理步驟，這個步驟負責處理宏定義、條件編譯指令和頭文件引入。</p>
+<p><strong>操作內容</strong>：
+- 宏替換：將 <code>#define</code> 定義的宏替換為具體的值。
+- 頭文件插入：將 <code>#include</code> 引入的頭文件內容插入源代碼。
+- 條件編譯：根據 <code>#ifdef</code>、<code>#endif</code> 等指令選擇性地包含代碼。</p>
+<p><strong>生成的檔案</strong>：預處理後的代碼文件，通常是 <code>.i</code> 或 <code>.ii</code> 文件（取決於語言和編譯器）。</p>
+<pre><code class="language-bash">gcc -E my_program.c   # 預處理 C 源文件，生成 .i 文件
+g++ -E my_program.cpp # 預處理 C++ 源文件，生成 .ii 文件
+</code></pre>
+<h3 id="2-compilation">2. <strong>編譯（Compilation）</strong></h3>
+<p>此階段編譯器會將展開後的程式碼轉換成組合語言。此階段又可以細分成四個小步驟，分別為 掃描 (scan)、語法分析 (parsing) 、語意分析 (semantic analysis) 與 源代碼優化 (source code optimization) 與 代碼生成與優化(code generation and optimization)。</p>
+<p><strong>操作內容</strong>：
+- 程式碼轉換成組合語言（<code>.s</code>）</p>
+<p><strong>生成的檔案</strong>：目標文件（如 <code>my_program.s</code>）。</p>
+<pre><code class="language-bash">gcc -S my_program.c   # 生成 my_program.s（匯編代碼）
+g++ -S my_program.cpp # 生成 my_program.s（匯編代碼）
+
+g++ -S main.i -o main.s
+</code></pre>
+<h3 id="3-assembly">3. <strong>匯編（Assembly）</strong></h3>
+<p>匯編器（assembler）將匯編語言的 .s 文件轉換為 機器代碼，並生成 .o 或 .obj 文件，這些是目標文件，包含了編譯後的機器碼，但尚未進行鏈接。</p>
+<p>.o 是目標文件的常見擴展名，特別是在 UNIX/Linux 系統中，而在 Windows 系統中，目標文件的擴展名常見為 .obj。</p>
+<p><strong>操作內容</strong>：
+- 將目標文件中的代碼轉換為匯編語言。</p>
+<p><strong>生成的檔案</strong>：匯編文件（如 <code>my_program.o</code>）。</p>
+<pre><code class="language-bash">gcc -c my_program.c   # 編譯並生成 my_program.o（目標文件）
+g++ -c my_program.cpp # 編譯並生成 my_program.o（目標文件）
+
+g++ -c main.s -o main.o
+</code></pre>
+<h3 id="4-linking">4. <strong>鏈接（Linking）</strong></h3>
+<p>鏈接器將目標文件和靜態或動態庫文件結合在一起，生成最終的可執行文件。這一步會解析符號並處理代碼和數據重定位。</p>
+<p><strong>操作內容</strong>：
+- 將多個目標文件和庫文件結合，解決符號依賴，並生成可執行文件。</p>
+<p><strong>生成的檔案</strong>：最終可執行文件（如 <code>my_program</code> 或 <code>my_program.exe</code>）。</p>
+<pre><code class="language-bash">
+將 main.o 連結到 名稱為main的執行檔
+$ g++ main.o -o main
+</code></pre>
+<p>--</p>
+<h2 id="_2">靜態鏈接與動態鏈接的區別</h2>
+<h3 id="static-linking"><strong>靜態鏈接（Static Linking）</strong></h3>
+<p>靜態鏈接是指在編譯期間，將所有需要的代碼和庫文件（靜態庫）合併進最終的可執行文件中。生成的可執行文件包含了所有的代碼，因此不依賴外部的共享庫。
+靜態庫的副檔名通常是 .a（例如 libfoo.a）。在 Windows 系統上，靜態庫的副檔名通常是 .lib（例如 foo.lib）
+<strong>特點</strong>：
+- <strong>包含所有代碼</strong>：最終的可執行文件包含了所有代碼（包括庫代碼），不需要依賴外部庫。
+- <strong>部署簡單</strong>：由於可執行文件包含了所有的代碼，部署時不需要考慮外部庫的依賴。
+- <strong>檔案較大</strong>：可執行文件會比動態鏈接的版本大，因為庫代碼被嵌入進去了。
+- <strong>更新麻煩</strong>：如果庫有更新，必須重新編譯可執行文件。</p>
+<h3 id="dynamic-linking"><strong>動態鏈接（Dynamic Linking）</strong></h3>
+<p>動態鏈接是指在程式運行時，將外部的共享庫，動態加載到內存中。可執行文件中並不包含庫代碼，而是包含庫的符號鏈接，庫代碼會在運行時加載。
+動態庫的副檔名通常是 .so（shared object，例如 libfoo.so）。在 Windows 系統上，動態庫的副檔名是 .dll（例如 foo.dll）</p>
+<p><strong>特點</strong>：
+- <strong>小巧的可執行文件</strong>：最終的可執行文件不包含庫代碼，因此比靜態鏈接的版本小。
+- <strong>庫共享</strong>：多個應用程式可以共享同一個動態庫，節省內存。
+- <strong>更新方便</strong>：動態鏈接庫的更新可以無需重新編譯應用程序，因為應用程式在運行時會使用最新的庫。
+- <strong>依賴外部庫</strong>：需要確保運行環境中存在所需的動態庫，否則應用程式無法運行。</p>
+<p><strong>命令示例</strong>：</p>
+<pre><code class="language-bash">gcc -o my_program my_program.o -L/path/to/libs -lfoo 
+
+
+#gcc：使用 GCC 編譯器。
+
+#-o my_program：指定生成的可執行文件名為 my_program。
+
+#my_program.o：需要鏈接的目標文件，這是已編譯過的源代碼。
+
+#-L/path/to/libs：指定靜態庫的路徑，編譯器會在這個目錄下查找庫文件。
+
+#-lfoo：指定要鏈接的靜態庫，這裡表示鏈接名為 libfoo.a 的靜態庫。注意，這裡使用的是庫名（foo），而不是文件名（libfoo.a）。GCC 會自動在庫名之前加上 lib，並在庫名後加上 .a（在 UNIX/Linux 上）。
+</code></pre>
+<h3 id="_3">靜態鏈接 和 動態鏈接 同時存在</h3>
+<p>如果同時存在靜態庫（.a）和動態庫（.so）的情況，gcc 預設會優先選擇 動態庫。這是因為動態庫通常提供更多的靈活性（例如庫的共享和更新），而靜態庫則是將庫代碼嵌入到可執行文件中。</p>
+<pre><code class="language-bash">#強制靜態
+gcc -o my_program my_program.o -L/path/to/libs -l:libfoo.a
+#強制靜態
+gcc -o my_program my_program.o -L/path/to/libs -Wl,-Bdynamic -lfoo
+
+#使用 -L 來指定不同的庫目錄路徑，這樣可以控制 gcc 先搜索哪個目錄。
+gcc -o my_program my_program.o -L/path/to/staticlibs -L/path/to/dynamiclibs -lfoo
+
+</code></pre>
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Last update">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+</span>
+    2025-05-26
+  </span>
+</aside>
+<!-- Facebook Comments 插件开始 -->
+<div class="fb-comments" data-href="https://gn01167661.github.io/DigitalGarden/embedded/compile_explaination/" data-numposts="5" data-width="">
+</div>
+<!-- Facebook Comments 插件结束 -->
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://github.com/gn01167661" rel="noopener" target="_blank" title="github.com">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="../../assets/js/graph.js"></script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+mermaid.initialize({});</script></body>
+</html>
